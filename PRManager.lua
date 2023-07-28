@@ -42,7 +42,7 @@ local fontsizes = {}
 function main()
     repeat wait(0) until isSampAvailable()
 
-    msg('Êîìàíäà äëÿ àêòèâàöèè: /prmenu')
+    msg('Команда для активации: /prmenu')
 
     sampRegisterChatCommand('prmenu', function() 
         mainwindow[0] = not mainwindow[0]
@@ -69,7 +69,7 @@ imgui.OnInitialize(function()
 
     -->> Font
     builder:AddRanges(imgui.GetIO().Fonts:GetGlyphRangesCyrillic())
-    builder:AddText("‚„…†‡ˆ‰‹‘’“”•–-™›¹")
+    builder:AddText("‚„…†‡€‰‹‘’“”•–-™›№")
     builder:BuildRanges(range)
     imgui.GetIO().Fonts:AddFontFromMemoryCompressedBase85TTF(result_compressed_data_base85, 14, nil, range[0].Data)
 
@@ -85,9 +85,9 @@ end)
 
 imgui.OnFrame(function() return mainwindow[0] end,
     function(self)
-        imgui.SetNextWindowPos(imgui.ImVec2(x / 2, y / 2), cond.FirstUseEver, imgui.ImVec2(0.5, 0.5)) -- îòâå÷àåò çà ïîëîæåíèå îêíà íà ýêðàíå
-        imgui.SetNextWindowSize(imgui.ImVec2(800, 600), cond.Always) -- îòâå÷àåò çà ðàçìåð îêíà
-        imgui.Begin(u8'Îñíîâíîå', mainwindow, flag.NoResize + flag.NoCollapse + flag.NoTitleBar) -- îòâå÷àåò çà îòîáðàæåíèå îêíà, åãî çàãîëîâîê è ôëàãè
+        imgui.SetNextWindowPos(imgui.ImVec2(x / 2, y / 2), cond.FirstUseEver, imgui.ImVec2(0.5, 0.5)) -- отвечает за положение окна на экране
+        imgui.SetNextWindowSize(imgui.ImVec2(800, 600), cond.Always) -- отвечает за размер окна
+        imgui.Begin(u8'Основное', mainwindow, flag.NoResize + flag.NoCollapse + flag.NoTitleBar) -- отвечает за отображение окна, его заголовок и флаги
             
             imgui.PushStyleColor(imgui.Col.Button, imgui.ImVec4(0, 0, 0, 0))
             imgui.PushStyleColor(imgui.Col.ButtonHovered, imgui.ImVec4(0, 0, 0, 0))
@@ -112,61 +112,61 @@ imgui.OnFrame(function() return mainwindow[0] end,
             imgui.PushFont(fontsizes[18.5])
                 if menuselect == 'main page' then
                     imgui.SetCursorPos(imgui.ImVec2(465, 15))
-                    imgui.TextColoredRGB(u8'{0096B8}Ãëàâíàÿ')
+                    imgui.TextColoredRGB(u8'{0096B8}Главная')
                     imgui.SetCursorPos(imgui.ImVec2(535, 15))
                     if imgui.Button(u8'##Custom', imgui.ImVec2(111.25, 20)) then menuselect = 'custom page' end
                     imgui.SetCursorPos(imgui.ImVec2(540, 15))
                     if imgui.IsItemHovered() then
-                        imgui.TextColoredRGB(u8'{01CCFF}Êàñòîìèçàöèÿ')
+                        imgui.TextColoredRGB(u8'{01CCFF}Кастомизация')
                     else
-                        imgui.Text(u8'Êàñòîìèçàöèÿ')
+                        imgui.Text(u8'Кастомизация')
                     end
                     imgui.SetCursorPos(imgui.ImVec2(650, 15))
                     if imgui.Button(u8'##Settings', imgui.ImVec2(86.25, 20)) then menuselect = 'settings page' end
                     imgui.SetCursorPos(imgui.ImVec2(655, 15))
                     if imgui.IsItemHovered() then
-                        imgui.TextColoredRGB(u8'{01CCFF}Íàñòðîéêè')
+                        imgui.TextColoredRGB(u8'{01CCFF}Настройки')
                     else
-                        imgui.Text(u8'Íàñòðîéêè')
+                        imgui.Text(u8'Настройки')
                     end
                 elseif menuselect == 'custom page' then
                     imgui.SetCursorPos(imgui.ImVec2(460, 15))
                     if imgui.Button(u8'##Main', imgui.ImVec2(111.25, 20)) then menuselect = 'main page' end
                     imgui.SetCursorPos(imgui.ImVec2(465, 15))
                     if imgui.IsItemHovered() then
-                        imgui.TextColoredRGB(u8'{01CCFF}Ãëàâíàÿ')
+                        imgui.TextColoredRGB(u8'{01CCFF}Главная')
                     else
-                        imgui.Text(u8'Ãëàâíàÿ')
+                        imgui.Text(u8'Главная')
                     end
                     imgui.SetCursorPos(imgui.ImVec2(540, 15))
-                    imgui.TextColoredRGB(u8'{0096B8}Êàñòîìèçàöèÿ')
+                    imgui.TextColoredRGB(u8'{0096B8}Кастомизация')
                     imgui.SetCursorPos(imgui.ImVec2(650, 15))
                     if imgui.Button(u8'##Settings', imgui.ImVec2(86.25, 20)) then menuselect = 'settings page' end
                     imgui.SetCursorPos(imgui.ImVec2(655, 15))
                     if imgui.IsItemHovered() then
-                        imgui.TextColoredRGB(u8'{01CCFF}Íàñòðîéêè')
+                        imgui.TextColoredRGB(u8'{01CCFF}Настройки')
                     else
-                        imgui.Text(u8'Íàñòðîéêè')
+                        imgui.Text(u8'Настройки')
                     end
                 elseif menuselect == 'settings page' then
                     imgui.SetCursorPos(imgui.ImVec2(460, 15))
                     if imgui.Button(u8'##Main', imgui.ImVec2(111.25, 20)) then menuselect = 'main page' end
                     imgui.SetCursorPos(imgui.ImVec2(465, 15))
                     if imgui.IsItemHovered() then
-                        imgui.TextColoredRGB(u8'{01CCFF}Ãëàâíàÿ')
+                        imgui.TextColoredRGB(u8'{01CCFF}Главная')
                     else
-                        imgui.Text(u8'Ãëàâíàÿ')
+                        imgui.Text(u8'Главная')
                     end
                     imgui.SetCursorPos(imgui.ImVec2(535, 15))
                     if imgui.Button(u8'##Custom', imgui.ImVec2(111.25, 20)) then menuselect = 'custom page' end
                     imgui.SetCursorPos(imgui.ImVec2(540, 15))
                     if imgui.IsItemHovered() then
-                        imgui.TextColoredRGB(u8'{01CCFF}Êàñòîìèçàöèÿ')
+                        imgui.TextColoredRGB(u8'{01CCFF}Кастомизация')
                     else
-                        imgui.Text(u8'Êàñòîìèçàöèÿ')
+                        imgui.Text(u8'Кастомизация')
                     end
                     imgui.SetCursorPos(imgui.ImVec2(655, 15))
-                    imgui.TextColoredRGB(u8'{0096B8}Íàñòðîéêè')
+                    imgui.TextColoredRGB(u8'{0096B8}Настройки')
                 end
             imgui.PopFont()
 
